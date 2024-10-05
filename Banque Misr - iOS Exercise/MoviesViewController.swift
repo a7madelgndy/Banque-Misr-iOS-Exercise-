@@ -13,13 +13,50 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
     @IBOutlet var tabBar: UITabBar!
     @IBOutlet var moviesCollectionView: UICollectionView!
     
-   
+    var nowPlaying:[Movie]?
+    var poupularMovies:[Movie]?
+    var upcomingMovies:[Movie]?
+    var movies :[Movie]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.moviesCollectionView.reloadData()
+            }
+        }
+    }
+    
+    var networkManger: NetworkManager?
+    var loadingIndicator: UIActivityIndicatorView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.isUserInteractionEnabled = false
+        showLoadingIndicator()
         setUpTabBar()
         setUpCollectionView()
+        networkManger = NetworkManager()
         
+        let group = DispatchGroup()
+        group.enter()
+        setUpConnectionToApi(category: .nowPlaying, completion: { movies in
+            self.nowPlaying = movies
+            group.leave()
+        })
+        
+        group.enter()
+        setUpConnectionToApi(category: .upcoming, completion: { movies in
+            self.upcomingMovies = movies
+            group.leave()
+        })
+        group.enter()
+        setUpConnectionToApi(category: .popular, completion: { movies in
+            self.poupularMovies = movies
+            group.leave()
+        })
+        group.notify(queue: .main) {
+            self.hideLoadingIndicator()
+            self.view.isUserInteractionEnabled = true
+            self.handleTabSelection(index: 0)
+        }
     }
     
 }
@@ -41,11 +78,14 @@ extension MoviesViewController:UITabBarDelegate {
         switch index {
         case 0:
             headerTitle.text = "Now playing Movies"
+            movies = nowPlaying
         case 1:
             headerTitle.text = "Popular Movies"
+            movies = poupularMovies
             
         case 2:
             headerTitle.text = "Upcoming Movies"
+            movies = upcomingMovies
         default:
             break
         }
@@ -63,11 +103,13 @@ extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSou
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movies?.count ?? 0
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
-     
+        if let movie = movies?[indexPath.row] {
+            cell.setUp(with: movie)
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
@@ -84,5 +126,31 @@ extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSou
     }
 }
 
+//MARK: netwroking
+extension MoviesViewController {
+    func setUpConnectionToApi(category: MovieCategory ,completion: @escaping ([Movie]?) -> Void){
+        networkManger?.fetchMovies(category: category,completion: { result in
+            switch result {
+            case .success(let movies):
+                completion(movies)
+            case .failure(let error):
+                completion(nil)
+                print("Error fetching movies: \(error.localizedDescription)")
+            }
+        })
+    }
+}
 
-
+//Mark: Indector
+extension MoviesViewController {
+    func showLoadingIndicator() {
+        loadingIndicator = UIActivityIndicatorView(style: .large)
+        loadingIndicator?.center = self.view.center
+        loadingIndicator?.startAnimating()
+        self.view.addSubview(loadingIndicator!)
+    }
+    func hideLoadingIndicator() {
+        loadingIndicator?.stopAnimating()
+        loadingIndicator?.removeFromSuperview()
+    }
+}
