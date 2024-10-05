@@ -108,7 +108,7 @@ extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         if let movie = movies?[indexPath.row] {
-            cell.titleLbl.text = movie.title
+            cell.setUp(with: movie)
         }
         return cell
     }
