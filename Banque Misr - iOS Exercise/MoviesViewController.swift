@@ -12,77 +12,111 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
     @IBOutlet var headerTitle: UILabel!
     @IBOutlet var tabBar: UITabBar!
     @IBOutlet var moviesCollectionView: UICollectionView!
-    
-   
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpTabBar()
-        setUpCollectionView()
-        
-    }
-    
-}
-//MARK: TabBar
-extension MoviesViewController:UITabBarDelegate {
-    func setUpTabBar() {
-        tabBar.delegate = self
-        tabBar.selectedItem = tabBar.items?.first
-        handleTabSelection(index: 0)
-    }
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        if let index = tabBar.items?.firstIndex(of: item) {
-            print("Selected tab index: \(index)")
-            handleTabSelection(index: index)
+      var nowPlaying:[Movie]?
+        var poupularMovies:[Movie]?
+        var upcomingMovies:[Movie]?
+        var movies :[Movie]? {
+            didSet {
+                DispatchQueue.main.async {
+                    self.moviesCollectionView.reloadData()
+                }
+            }
         }
-    }
-    
-    func handleTabSelection(index: Int) {
-        switch index {
-        case 0:
-            headerTitle.text = "Now playing Movies"
-        case 1:
-            headerTitle.text = "Popular Movies"
+        
+        var networkManger: NetworkManager?
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setUpTabBar()
+            setUpCollectionView()
+            networkManger = NetworkManager()
+            setUpConnectionToApi(category: .nowPlaying, completion: { movies in
+                self.nowPlaying = movies
+            })
             
-        case 2:
-            headerTitle.text = "Upcoming Movies"
-        default:
-            break
+           
         }
-    }
-}
-
-//MARK: Movies collection View
-extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    func setUpCollectionView() {
-        moviesCollectionView.delegate = self
-        moviesCollectionView.dataSource = self
-        moviesCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
-    }
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
-     
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         
     }
-    //number of  items in the row
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 10 //padding
-        let itemsPerRow: CGFloat = 3// number of items
-        let totalPadding = padding * (itemsPerRow + 1) // padding between items and edges
-        let availableWidth = collectionView.frame.width - totalPadding
-        let itemWidth = availableWidth / itemsPerRow
-        return CGSize(width: itemWidth, height: itemWidth)
+    //MARK: TabBar
+    extension MoviesViewController:UITabBarDelegate {
+        func setUpTabBar() {
+            tabBar.delegate = self
+            tabBar.selectedItem = tabBar.items?.first
+            handleTabSelection(index: 0)
+        }
+        func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+            if let index = tabBar.items?.firstIndex(of: item) {
+                print("Selected tab index: \(index)")
+                handleTabSelection(index: index)
+            }
+        }
+        
+        func handleTabSelection(index: Int) {
+            switch index {
+            case 0:
+                headerTitle.text = "Now playing Movies"
+                movies = nowPlaying
+            case 1:
+                headerTitle.text = "Popular Movies"
+                movies = poupularMovies
+                
+            case 2:
+                headerTitle.text = "Upcoming Movies"
+                movies = upcomingMovies
+            default:
+                break
+            }
+        }
     }
-}
 
+    //MARK: Movies collection View
+    extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+        func setUpCollectionView() {
+            moviesCollectionView.delegate = self
+            moviesCollectionView.dataSource = self
+            moviesCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
+        }
+        func numberOfSections(in collectionView: UICollectionView) -> Int {
+            return 1
+        }
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return movies?.count ?? 0
+        }
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
+            if let movie = movies?[indexPath.row] {
+                cell.titleLbl.text = movie.title
+            }
+            return cell
+        }
+        func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+            
+        }
+        //number of  items in the row
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            let padding: CGFloat = 10 //padding
+            let itemsPerRow: CGFloat = 3// number of items
+            let totalPadding = padding * (itemsPerRow + 1) // padding between items and edges
+            let availableWidth = collectionView.frame.width - totalPadding
+            let itemWidth = availableWidth / itemsPerRow
+            return CGSize(width: itemWidth, height: itemWidth)
+        }
+    }
 
+    //MARK: netwroking
+    extension MoviesViewController {
+        func setUpConnectionToApi(category: MovieCategory ,completion: @escaping ([Movie]?) -> Void){
+            networkManger?.fetchMovies(category: category,completion: { result in
+                switch result {
+                case .success(let movies):
+                    completion(movies)
+                case .failure(let error):
+                    completion(nil)
+                    print("Error fetching movies: \(error.localizedDescription)")
+                }
+            })
+        }
+    }
 
+    
