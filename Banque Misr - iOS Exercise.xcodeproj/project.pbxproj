@@ -17,6 +17,9 @@
 		15931D442CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D432CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift */; };
 		15931D4E2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */; };
 		15931D502CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */; };
+		15CA47602CB1D003001175A0 /* NetwrokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA475F2CB1D003001175A0 /* NetwrokManager.swift */; };
+		15CA47632CB1D02E001175A0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47622CB1D02E001175A0 /* Movie.swift */; };
+		15CA47652CB1D050001175A0 /* MovieCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47642CB1D050001175A0 /* MovieCategory.swift */; };
 		15CC51772CB1BDA000A41E72 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,9 @@
 		15931D492CB1B6F600927DBE /* Banque Misr - iOS ExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Banque Misr - iOS ExerciseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseUITests.swift"; sourceTree = "<group>"; };
 		15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift"; sourceTree = "<group>"; };
+		15CA475F2CB1D003001175A0 /* NetwrokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrokManager.swift; sourceTree = "<group>"; };
+		15CA47622CB1D02E001175A0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		15CA47642CB1D050001175A0 /* MovieCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategory.swift; sourceTree = "<group>"; };
 		15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +109,8 @@
 		15931D282CB1B6F400927DBE /* Banque Misr - iOS Exercise */ = {
 			isa = PBXGroup;
 			children = (
+				15CA47612CB1D023001175A0 /* Model */,
+				15CA475D2CB1CFDC001175A0 /* Services */,
 				15931D292CB1B6F400927DBE /* AppDelegate.swift */,
 				15931D2B2CB1B6F400927DBE /* SceneDelegate.swift */,
 				15931D2D2CB1B6F400927DBE /* MoviesViewController.swift */,
@@ -112,6 +120,7 @@
 				15931D3A2CB1B6F600927DBE /* Info.plist */,
 				15931D322CB1B6F400927DBE /* Banque_Misr___iOS_Exercise.xcdatamodeld */,
 				15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */,
+				15CA47642CB1D050001175A0 /* MovieCategory.swift */,
 			);
 			path = "Banque Misr - iOS Exercise";
 			sourceTree = "<group>";
@@ -131,6 +140,30 @@
 				15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */,
 			);
 			path = "Banque Misr - iOS ExerciseUITests";
+			sourceTree = "<group>";
+		};
+		15CA475D2CB1CFDC001175A0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				15CA475E2CB1CFE8001175A0 /* Remote */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		15CA475E2CB1CFE8001175A0 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				15CA475F2CB1D003001175A0 /* NetwrokManager.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		15CA47612CB1D023001175A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15CA47622CB1D02E001175A0 /* Movie.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,10 +297,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15CA47632CB1D02E001175A0 /* Movie.swift in Sources */,
 				15931D342CB1B6F400927DBE /* Banque_Misr___iOS_Exercise.xcdatamodeld in Sources */,
 				15931D2E2CB1B6F400927DBE /* MoviesViewController.swift in Sources */,
 				15CC51772CB1BDA000A41E72 /* MovieCollectionViewCell.swift in Sources */,
+				15CA47652CB1D050001175A0 /* MovieCategory.swift in Sources */,
 				15931D2A2CB1B6F400927DBE /* AppDelegate.swift in Sources */,
+				15CA47602CB1D003001175A0 /* NetwrokManager.swift in Sources */,
 				15931D2C2CB1B6F400927DBE /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
