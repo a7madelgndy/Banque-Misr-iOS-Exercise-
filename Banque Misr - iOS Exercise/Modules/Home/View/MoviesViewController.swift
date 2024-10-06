@@ -27,13 +27,14 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
     var networkManger: NetworkManager?
     var loadingIndicator: UIActivityIndicatorView?
     let networkMonitor = NetworkMonitor.shared
-
+    var appCoordinator:AppCoordinator? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
         showLoadingIndicator()
         setUpTabBar()
         setUpCollectionView()
+        appCoordinator = AppCoordinator()
         networkMonitor.checkConnection { isConnected in
             if isConnected {
                 self.networkManger = NetworkManager()
@@ -61,6 +62,7 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
                     self.handleTabSelection(index: 0)
                 }
             } else {
+                self.appCoordinator?.showAlert(from: self, message: .warning("there is No intere net you are in the Local Storage"))
                 self.hideLoadingIndicator()
                 self.view.isUserInteractionEnabled = true
                 self.movies = CoreDataManager.shared.fetchFavoriteMovies()
