@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Foundation
 
 class MoviesViewModel {
     var nowPlaying: [Movie]? {
