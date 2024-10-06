@@ -21,8 +21,6 @@ struct MoviesResponse: Decodable {
 struct Movie: Decodable {
     let id: Int
     let title: String
-    let overview: String
-    let releaseDate: String
     let posterPath: String?
 
 }

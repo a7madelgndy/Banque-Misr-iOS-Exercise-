@@ -26,37 +26,50 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
     
     var networkManger: NetworkManager?
     var loadingIndicator: UIActivityIndicatorView?
-    
+    let networkMonitor = NetworkMonitor.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
         showLoadingIndicator()
         setUpTabBar()
         setUpCollectionView()
-        networkManger = NetworkManager()
-        
-        let group = DispatchGroup()
-        group.enter()
-        setUpConnectionToApi(category: .nowPlaying, completion: { movies in
-            self.nowPlaying = movies
-            group.leave()
-        })
-        
-        group.enter()
-        setUpConnectionToApi(category: .upcoming, completion: { movies in
-            self.upcomingMovies = movies
-            group.leave()
-        })
-        group.enter()
-        setUpConnectionToApi(category: .popular, completion: { movies in
-            self.poupularMovies = movies
-            group.leave()
-        })
-        group.notify(queue: .main) {
-            self.hideLoadingIndicator()
-            self.view.isUserInteractionEnabled = true
-            self.handleTabSelection(index: 0)
+        networkMonitor.checkConnection { isConnected in
+            if isConnected {
+                self.networkManger = NetworkManager()
+                let group = DispatchGroup()
+                group.enter()
+                self.setUpConnectionToApi(category: .nowPlaying, completion: { movies in
+                    self.nowPlaying = movies
+                    CoreDataManager.shared.saveMovies(movies: movies!)
+                    group.leave()
+                })
+                
+                group.enter()
+                self.setUpConnectionToApi(category: .upcoming, completion: { movies in
+                    self.upcomingMovies = movies
+                    group.leave()
+                })
+                group.enter()
+                self.setUpConnectionToApi(category: .popular, completion: { movies in
+                    self.poupularMovies = movies
+                    group.leave()
+                })
+                group.notify(queue: .main) {
+                    self.hideLoadingIndicator()
+                    self.view.isUserInteractionEnabled = true
+                    self.handleTabSelection(index: 0)
+                }
+            } else {
+                self.hideLoadingIndicator()
+                self.view.isUserInteractionEnabled = true
+                self.movies = CoreDataManager.shared.fetchFavoriteMovies()
+                
+                print(self.movies)
+            }
         }
+
+
     }
     
 }
@@ -170,7 +183,28 @@ extension MoviesViewController {
         self.view.addSubview(loadingIndicator!)
     }
     func hideLoadingIndicator() {
-        loadingIndicator?.stopAnimating()
-        loadingIndicator?.removeFromSuperview()
+        DispatchQueue.main.async { [weak self] in
+            self?.loadingIndicator?.stopAnimating()
+            self?.loadingIndicator?.removeFromSuperview()
+        }
     }
+}
+
+//Mark REfressindecto
+extension MoviesViewController {
+   
+
+     
+     func fetchData() {
+         showLoadingIndicator()
+         
+         // Simulating a network call
+         DispatchQueue.global().async {
+             // Simulate network delay
+             sleep(2)
+             
+             // Once done, hide the loading indicator
+             self.hideLoadingIndicator()
+         }
+     }
 }
