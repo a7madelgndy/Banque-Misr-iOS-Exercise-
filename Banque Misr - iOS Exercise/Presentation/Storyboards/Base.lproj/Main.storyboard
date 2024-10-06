@@ -25,13 +25,13 @@
                                     <constraint firstAttribute="height" constant="60" id="B2t-ke-LVo"/>
                                 </constraints>
                                 <items>
-                                    <tabBarItem id="gLV-KK-Ams" userLabel="now playing">
+                                    <tabBarItem title="Playing now " id="gLV-KK-Ams" userLabel="now playing">
                                         <imageReference key="image" image="play" catalog="system" symbolScale="large"/>
                                         <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <imageReference key="selectedImage" image="play.fill" catalog="system" symbolScale="large"/>
                                     </tabBarItem>
-                                    <tabBarItem image="flame" catalog="system" selectedImage="flame.fill" id="PKR-Nu-mdv" userLabel="popular"/>
-                                    <tabBarItem title="" image="calendar.badge.plus" catalog="system" selectedImage="calendar.badge.clock" id="P8K-pP-pW8" userLabel="upcoming"/>
+                                    <tabBarItem title="Populer" image="flame" catalog="system" selectedImage="flame.fill" id="PKR-Nu-mdv" userLabel="popular"/>
+                                    <tabBarItem title="UpComing" image="calendar.badge.plus" catalog="system" selectedImage="calendar.badge.clock" id="P8K-pP-pW8" userLabel="upcoming"/>
                                 </items>
                             </tabBar>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="F1q-MI-BXb">
