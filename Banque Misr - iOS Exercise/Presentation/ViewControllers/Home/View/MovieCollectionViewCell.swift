@@ -26,7 +26,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
                     self.movieImage.image = UIImage(named: "1")
                 }
             }
-           
+            
         } else {
             movieImage.image = UIImage(named: "1")
         }

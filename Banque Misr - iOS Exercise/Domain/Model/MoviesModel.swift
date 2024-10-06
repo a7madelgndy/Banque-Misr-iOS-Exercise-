@@ -8,7 +8,7 @@
 import Foundation
 
 
-    //Root
+    //قoot
 struct MoviesResponse: Decodable {
     let results: [Movie]
     let page: Int

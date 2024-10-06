@@ -12,41 +12,41 @@ class NetworkManager: MovieFetchingProtocol, ImageLoadingProtocol {
     private let apiKey = "2c843b0224e59c561fc448832e378f65"
     private let session: URLSession
     private let imageLoader: ImageLoader
-
+    
     init(session: URLSession = .shared, imageLoader: ImageLoader = ImageLoader()) {
         self.session = session
         self.imageLoader = imageLoader
     }
-
-    // Fetch Movies
+    
+    // fetch movies
     func fetchMovies(category: MovieCategory, completion: @escaping (Result<[Movie], Error>) -> Void) {
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(category.rawValue)") else { return }
-
+        
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)!
         components.queryItems = [
             URLQueryItem(name: "api_key", value: apiKey),
             URLQueryItem(name: "language", value: "en-US"),
             URLQueryItem(name: "page", value: "1")
         ]
-
+        
         var request = URLRequest(url: components.url!)
         request.httpMethod = "GET"
         request.timeoutInterval = 10
         request.allHTTPHeaderFields = ["accept": "application/json"]
-
+        
         let task = session.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 let noDataError = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])
                 completion(.failure(noDataError))
                 return
             }
-
+            
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -59,23 +59,23 @@ class NetworkManager: MovieFetchingProtocol, ImageLoadingProtocol {
         }
         task.resume()
     }
-
+    
     func fetchMovieDetails(for movieID: Int, completion: @escaping (Result<MovieDetail, Error>) -> Void) {
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)?api_key=\(apiKey)&language=en-US") else { return }
-
+        
         let task = session.dataTask(with: url) { data, response, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 completion(.failure(error))
                 return
             }
-
+            
             guard let data = data else {
                 let noDataError = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "No data received"])
                 completion(.failure(noDataError))
                 return
             }
-
+            
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -88,8 +88,8 @@ class NetworkManager: MovieFetchingProtocol, ImageLoadingProtocol {
         }
         task.resume()
     }
-
-    // Fetch Image
+    
+    // fetch image
     func fetchImage(with movie: MovieDetail, completion: @escaping (UIImage?) -> Void) {
         imageLoader.fetchImage(with: movie.posterPath, completion: completion)
     }

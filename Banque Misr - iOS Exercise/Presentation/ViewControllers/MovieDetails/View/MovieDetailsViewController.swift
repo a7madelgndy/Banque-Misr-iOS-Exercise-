@@ -15,31 +15,32 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet var overViewLbl: UILabel!
     @IBOutlet var movieTitle: UILabel!
 
-    var movieDatiles:MovieDetail?
-    var networkingManager : NetworkManager?
-    var imageView:UIImage?
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        networkingManager = NetworkManager()
-        networkingManager?.fetchImage(with: movieDatiles!, completion:
-                                        { image in
-            self.movieIamge.image = image
-        })
-        print("MovieDetailsViewController will appear")
+    var viewModel: MovieDetailsViewModel?
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
             setUpView()
-    }
+            fetchMovieImage()
+        }
+        
+        func setUpView() {
+            guard let movie = viewModel?.movieDetail else {
+                print("Movie is nil")
+                return
+            }
+            movieTitle.text = movie.title
+            overViewLbl.text = movie.overview
+            movieRealseDate.text = "Release Date: " + movie.releaseDate
+        }
 
-      func setUpView() {
-          guard let movie = movieDatiles else {
-              print("Movie is nil")
-              return
-          }
-          movieTitle.text = movie.title
-          overViewLbl.text = movie.overview
-          movieRealseDate.text = movie.releaseDate
-          movieIamge.image = imageView
+        private func fetchMovieImage() {
+            viewModel?.fetchMovieImage { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.movieIamge.image = image ?? UIImage(named: "1")
+                }
+            }
+        }
 
-      }
     @IBAction func backButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }

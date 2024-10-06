@@ -110,17 +110,26 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         view.isUserInteractionEnabled = false
         showLoadingIndicator()
-        guard let selectedMovie = movies?[indexPath.row].id else { return }
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as! MovieDetailsViewController
-        viewModel.networkManager?.fetchMovieDetails(for: selectedMovie) { result in
+        
+        guard let selectedMovieId = movies?[indexPath.row].id else { return }
+        
+        viewModel.networkManager?.fetchMovieDetails(for: selectedMovieId) { [weak self] result in
+            DispatchQueue.main.async {
+                self?.view.isUserInteractionEnabled = true
+                self?.hideLoadingIndicator()
+            }
+            
             switch result {
             case .success(let movie):
-                DispatchQueue.main.async {
-                    self.view.isUserInteractionEnabled = true
-                    self.hideLoadingIndicator()
-                    detailVC.movieDatiles = movie
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as! MovieDetailsViewController
+                    detailVC.viewModel = MovieDetailsViewModel(networkingManager: NetworkManager())
+                    detailVC.viewModel?.movieDetail = movie
+                    
                     self.present(detailVC, animated: true)
                 }
+                
             case .failure(let error):
                 print(error)
             }
