@@ -18,9 +18,17 @@ class MovieCollectionViewCell: UICollectionViewCell {
         
         if let posterPath = movie.posterPath {
             let imageUrlString = baseURL + posterPath
-            loadImage(from: imageUrlString)
+            NetworkMonitor.shared.checkConnection { isconnected in
+                if isconnected {
+                    self.loadImage(from: imageUrlString)
+                }
+                else {
+                    self.movieImage.image = UIImage(named: "1")
+                }
+            }
+            
         } else {
-            movieImage.image = UIImage(named: "no poster")
+            movieImage.image = UIImage(named: "1")
         }
     }
     

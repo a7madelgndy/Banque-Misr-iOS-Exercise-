@@ -8,7 +8,7 @@
 import Foundation
 
 
-    //Root
+    //قoot
 struct MoviesResponse: Decodable {
     let results: [Movie]
     let page: Int
@@ -21,8 +21,6 @@ struct MoviesResponse: Decodable {
 struct Movie: Decodable {
     let id: Int
     let title: String
-    let overview: String
-    let releaseDate: String
     let posterPath: String?
 
 }
