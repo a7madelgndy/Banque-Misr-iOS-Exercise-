@@ -43,6 +43,7 @@ class NetworkManager {
             do{
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
+                
                 let moviesResponse = try decoder.decode(MoviesResponse.self, from: data)
                 completion(.success(moviesResponse.results))
                 
