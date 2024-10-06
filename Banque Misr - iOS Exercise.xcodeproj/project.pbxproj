@@ -111,19 +111,14 @@
 		15931D282CB1B6F400927DBE /* Banque Misr - iOS Exercise */ = {
 			isa = PBXGroup;
 			children = (
-				15CA47612CB1D023001175A0 /* Model */,
 				15CA475D2CB1CFDC001175A0 /* Services */,
-				15931D292CB1B6F400927DBE /* AppDelegate.swift */,
+				15CA47612CB1D023001175A0 /* Model */,
+				15ADD2B92CB226AC000B57E5 /* Modules */,
+				15ADD2C02CB22765000B57E5 /* View */,
 				15931D2B2CB1B6F400927DBE /* SceneDelegate .swift */,
-				15931D2D2CB1B6F400927DBE /* MoviesViewController.swift */,
-				15931D2F2CB1B6F400927DBE /* Main.storyboard */,
+				15931D292CB1B6F400927DBE /* AppDelegate.swift */,
 				15931D352CB1B6F600927DBE /* Assets.xcassets */,
-				15931D372CB1B6F600927DBE /* LaunchScreen.storyboard */,
 				15931D3A2CB1B6F600927DBE /* Info.plist */,
-				15931D322CB1B6F400927DBE /* Banque_Misr___iOS_Exercise.xcdatamodeld */,
-				15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */,
-				15CA47642CB1D050001175A0 /* MovieCategory.swift */,
-				151C2CDF2CB1E34C00FDEB66 /* MovieDetailsViewController.swift */,
 			);
 			path = "Banque Misr - iOS Exercise";
 			sourceTree = "<group>";
@@ -145,9 +140,102 @@
 			path = "Banque Misr - iOS ExerciseUITests";
 			sourceTree = "<group>";
 		};
+		15ADD2B72CB2264C000B57E5 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				15931D322CB1B6F400927DBE /* Banque_Misr___iOS_Exercise.xcdatamodeld */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		15ADD2B82CB22684000B57E5 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				15CA47622CB1D02E001175A0 /* Movie.swift */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		15ADD2B92CB226AC000B57E5 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2BA2CB226C9000B57E5 /* Home */,
+				15ADD2BB2CB226D6000B57E5 /* MovieDetails */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		15ADD2BA2CB226C9000B57E5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2C12CB227FB000B57E5 /* Model */,
+				15ADD2BC2CB226FC000B57E5 /* View */,
+				15ADD2BD2CB22701000B57E5 /* View Model */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		15ADD2BB2CB226D6000B57E5 /* MovieDetails */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2BE2CB22709000B57E5 /* View */,
+				15ADD2BF2CB2270F000B57E5 /* View Model */,
+			);
+			path = MovieDetails;
+			sourceTree = "<group>";
+		};
+		15ADD2BC2CB226FC000B57E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				15931D2D2CB1B6F400927DBE /* MoviesViewController.swift */,
+				15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		15ADD2BD2CB22701000B57E5 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		15ADD2BE2CB22709000B57E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				151C2CDF2CB1E34C00FDEB66 /* MovieDetailsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		15ADD2BF2CB2270F000B57E5 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		15ADD2C02CB22765000B57E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				15931D2F2CB1B6F400927DBE /* Main.storyboard */,
+				15931D372CB1B6F600927DBE /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		15ADD2C12CB227FB000B57E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15CA47642CB1D050001175A0 /* MovieCategory.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		15CA475D2CB1CFDC001175A0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				15ADD2B72CB2264C000B57E5 /* Local */,
 				15CA475E2CB1CFE8001175A0 /* Remote */,
 			);
 			path = Services;
@@ -164,7 +252,7 @@
 		15CA47612CB1D023001175A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				15CA47622CB1D02E001175A0 /* Movie.swift */,
+				15ADD2B82CB22684000B57E5 /* Movie */,
 			);
 			path = Model;
 			sourceTree = "<group>";
