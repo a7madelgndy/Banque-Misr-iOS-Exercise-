@@ -115,6 +115,26 @@ extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else {
+              return
+          }
+        guard let selectedImage = cell.movieImage.image else { return }
+        let vc = storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as? MovieDetailsViewController
+        guard let vc = vc else {return }
+        vc.movieDatiles = movies?[indexPath.row]
+        vc.imageView = selectedImage
+        self.present(vc, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailSegue",
+           let destinationVC = segue.destination as? MovieDetailsViewController,
+           let indexPath = sender as? IndexPath {
+            destinationVC.movieDatiles = movies?[indexPath.row]
+        }
+    }
+ 
     //number of  items in the row
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 10 //padding
