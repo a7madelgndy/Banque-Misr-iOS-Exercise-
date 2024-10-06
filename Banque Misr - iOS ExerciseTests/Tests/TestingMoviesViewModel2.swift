@@ -13,7 +13,7 @@ final class TestingMoviesViewModel: XCTestCase {
       var mockNetworkManager: MockNetworkManager!
     override func setUpWithError() throws {
         mockNetworkManager = MockNetworkManager()
-               viewModel = MoviesViewModel(networkManager: mockNetworkManager)
+        viewModel = MoviesViewModel(networkManager: mockNetworkManager)
     }
 
     override func tearDownWithError() throws {
@@ -24,6 +24,7 @@ final class TestingMoviesViewModel: XCTestCase {
     func testFetchNowPlayingMoviesSuccess() {
           let expectation = XCTestExpectation(description: "Fetch now playing movies successfully")
         mockNetworkManager.mockMovies = [
+          
             Movie(id: 1, title: "movei 1", posterPath: nil),
             Movie(id: 2, title: "movie 2", posterPath: nil)
           ]

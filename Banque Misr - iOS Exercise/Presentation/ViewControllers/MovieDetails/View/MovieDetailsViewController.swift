@@ -36,7 +36,7 @@ class MovieDetailsViewController: UIViewController {
         private func fetchMovieImage() {
             viewModel?.fetchMovieImage { [weak self] image in
                 DispatchQueue.main.async {
-                    self?.movieIamge.image = image ?? UIImage(named: "1")
+                    self?.movieIamge.image = image
                 }
             }
         }

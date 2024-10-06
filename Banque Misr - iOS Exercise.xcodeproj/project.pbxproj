@@ -31,6 +31,9 @@
 		15C45E1F2CB2FE9400043339 /* FetchMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E1E2CB2FE9400043339 /* FetchMoviesUseCase.swift */; };
 		15C45E232CB305D000043339 /* MokingMovieFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E222CB305D000043339 /* MokingMovieFetching.swift */; };
 		15C45E272CB30D6000043339 /* TestingMoviesViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E262CB30D6000043339 /* TestingMoviesViewModel2.swift */; };
+		15C45E292CB312B600043339 /* MockImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E282CB312B600043339 /* MockImageLoader.swift */; };
+		15C45E2B2CB3132900043339 /* TestingMoviesDateilsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E2A2CB3132900043339 /* TestingMoviesDateilsViewController.swift */; };
+		15C45E2D2CB31A4D00043339 /* TestingNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E2C2CB31A4C00043339 /* TestingNetworking.swift */; };
 		15CA47602CB1D003001175A0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA475F2CB1D003001175A0 /* NetworkManager.swift */; };
 		15CA47632CB1D02E001175A0 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47622CB1D02E001175A0 /* MoviesModel.swift */; };
 		15CA47652CB1D050001175A0 /* MovieCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47642CB1D050001175A0 /* MovieCategory.swift */; };
@@ -83,6 +86,9 @@
 		15C45E1E2CB2FE9400043339 /* FetchMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMoviesUseCase.swift; sourceTree = "<group>"; };
 		15C45E222CB305D000043339 /* MokingMovieFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokingMovieFetching.swift; sourceTree = "<group>"; };
 		15C45E262CB30D6000043339 /* TestingMoviesViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingMoviesViewModel2.swift; sourceTree = "<group>"; };
+		15C45E282CB312B600043339 /* MockImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageLoader.swift; sourceTree = "<group>"; };
+		15C45E2A2CB3132900043339 /* TestingMoviesDateilsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingMoviesDateilsViewController.swift; sourceTree = "<group>"; };
+		15C45E2C2CB31A4C00043339 /* TestingNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingNetworking.swift; sourceTree = "<group>"; };
 		15CA475F2CB1D003001175A0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		15CA47622CB1D02E001175A0 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		15CA47642CB1D050001175A0 /* MovieCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategory.swift; sourceTree = "<group>"; };
@@ -339,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				15C45E222CB305D000043339 /* MokingMovieFetching.swift */,
+				15C45E282CB312B600043339 /* MockImageLoader.swift */,
 			);
 			path = Moking;
 			sourceTree = "<group>";
@@ -355,6 +362,8 @@
 		15C45E252CB30C4700043339 /* Testing ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				15C45E2A2CB3132900043339 /* TestingMoviesDateilsViewController.swift */,
+				15C45E2C2CB31A4C00043339 /* TestingNetworking.swift */,
 			);
 			path = "Testing ViewModel";
 			sourceTree = "<group>";
@@ -537,8 +546,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15C45E292CB312B600043339 /* MockImageLoader.swift in Sources */,
+				15C45E2B2CB3132900043339 /* TestingMoviesDateilsViewController.swift in Sources */,
 				15C45E272CB30D6000043339 /* TestingMoviesViewModel2.swift in Sources */,
 				15C45E232CB305D000043339 /* MokingMovieFetching.swift in Sources */,
+				15C45E2D2CB31A4D00043339 /* TestingNetworking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
