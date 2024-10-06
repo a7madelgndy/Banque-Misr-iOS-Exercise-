@@ -110,30 +110,39 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         view.isUserInteractionEnabled = false
         showLoadingIndicator()
-        
-        guard let selectedMovieId = movies?[indexPath.row].id else { return }
-        
-        viewModel.networkManager?.fetchMovieDetails(for: selectedMovieId) { [weak self] result in
-            DispatchQueue.main.async {
-                self?.view.isUserInteractionEnabled = true
-                self?.hideLoadingIndicator()
-            }
-            
-            switch result {
-            case .success(let movie):
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as! MovieDetailsViewController
-                    detailVC.viewModel = MovieDetailsViewModel(networkingManager: NetworkManager())
-                    detailVC.viewModel?.movieDetail = movie
+        networkMonitor.checkConnection{[weak self] isConnected in
+            guard let self = self else { return }
+            if isConnected {
+                guard let selectedMovieId = movies?[indexPath.row].id else { return }
+                viewModel.networkManager?.fetchMovieDetails(for: selectedMovieId) { [weak self] result in
+                    DispatchQueue.main.async {
+                        self?.view.isUserInteractionEnabled = true
+                        self?.hideLoadingIndicator()
+                    }
                     
-                    self.present(detailVC, animated: true)
+                    switch result {
+                    case .success(let movie):
+                        DispatchQueue.main.async { [weak self] in
+                            guard let self = self else { return }
+                            let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as! MovieDetailsViewController
+                            detailVC.viewModel = MovieDetailsViewModel(networkingManager: NetworkManager())
+                            detailVC.viewModel?.movieDetail = movie
+                            
+                            self.present(detailVC, animated: true)
+                        }
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
                 }
-                
-            case .failure(let error):
-                print(error)
+            }
+            else{
+                self.appCoordinator?.showAlert(from: self, message: .warning("it seems you are not connected to the internet. Please check your network settings to access the Movie Details."))
+                self.view.isUserInteractionEnabled = true
+                self.hideLoadingIndicator()
             }
         }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

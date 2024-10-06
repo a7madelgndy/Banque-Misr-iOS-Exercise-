@@ -14,9 +14,6 @@
 		15931D312CB1B6F400927DBE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 15931D302CB1B6F400927DBE /* Base */; };
 		15931D362CB1B6F600927DBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15931D352CB1B6F600927DBE /* Assets.xcassets */; };
 		15931D392CB1B6F600927DBE /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 15931D382CB1B6F600927DBE /* Base */; };
-		15931D442CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D432CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift */; };
-		15931D4E2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */; };
-		15931D502CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */; };
 		15ADD2C92CB22D38000B57E5 /* Connectivty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2C82CB22D38000B57E5 /* Connectivty.swift */; };
 		15ADD2CF2CB24267000B57E5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2CE2CB24267000B57E5 /* AppCoordinator.swift */; };
 		15ADD2D12CB2451D000B57E5 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2D02CB2451D000B57E5 /* MessageType.swift */; };
@@ -31,6 +28,9 @@
 		15C45E172CB2EB6E00043339 /* MovieEntityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E162CB2EB6E00043339 /* MovieEntityType.swift */; };
 		15C45E192CB2EC2D00043339 /* CoreDataManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E182CB2EC2D00043339 /* CoreDataManagerProtocol.swift */; };
 		15C45E1C2CB2F21200043339 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E1B2CB2F21200043339 /* MovieDetailsViewModel.swift */; };
+		15C45E1F2CB2FE9400043339 /* FetchMoviesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E1E2CB2FE9400043339 /* FetchMoviesUseCase.swift */; };
+		15C45E232CB305D000043339 /* MokingMovieFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E222CB305D000043339 /* MokingMovieFetching.swift */; };
+		15C45E272CB30D6000043339 /* TestingMoviesViewModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C45E262CB30D6000043339 /* TestingMoviesViewModel2.swift */; };
 		15CA47602CB1D003001175A0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA475F2CB1D003001175A0 /* NetworkManager.swift */; };
 		15CA47632CB1D02E001175A0 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47622CB1D02E001175A0 /* MoviesModel.swift */; };
 		15CA47652CB1D050001175A0 /* MovieCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47642CB1D050001175A0 /* MovieCategory.swift */; };
@@ -65,10 +65,7 @@
 		15931D382CB1B6F600927DBE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15931D3A2CB1B6F600927DBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15931D3F2CB1B6F600927DBE /* Banque Misr - iOS ExerciseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Banque Misr - iOS ExerciseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		15931D432CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseTests.swift"; sourceTree = "<group>"; };
 		15931D492CB1B6F600927DBE /* Banque Misr - iOS ExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Banque Misr - iOS ExerciseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseUITests.swift"; sourceTree = "<group>"; };
-		15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift"; sourceTree = "<group>"; };
 		15ADD2C82CB22D38000B57E5 /* Connectivty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivty.swift; sourceTree = "<group>"; };
 		15ADD2CE2CB24267000B57E5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		15ADD2D02CB2451D000B57E5 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
@@ -83,6 +80,9 @@
 		15C45E162CB2EB6E00043339 /* MovieEntityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntityType.swift; sourceTree = "<group>"; };
 		15C45E182CB2EC2D00043339 /* CoreDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerProtocol.swift; sourceTree = "<group>"; };
 		15C45E1B2CB2F21200043339 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
+		15C45E1E2CB2FE9400043339 /* FetchMoviesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchMoviesUseCase.swift; sourceTree = "<group>"; };
+		15C45E222CB305D000043339 /* MokingMovieFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MokingMovieFetching.swift; sourceTree = "<group>"; };
+		15C45E262CB30D6000043339 /* TestingMoviesViewModel2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingMoviesViewModel2.swift; sourceTree = "<group>"; };
 		15CA475F2CB1D003001175A0 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		15CA47622CB1D02E001175A0 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		15CA47642CB1D050001175A0 /* MovieCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategory.swift; sourceTree = "<group>"; };
@@ -119,7 +119,6 @@
 			children = (
 				15931D282CB1B6F400927DBE /* Banque Misr - iOS Exercise */,
 				15931D422CB1B6F600927DBE /* Banque Misr - iOS ExerciseTests */,
-				15931D4C2CB1B6F600927DBE /* Banque Misr - iOS ExerciseUITests */,
 				15931D272CB1B6F400927DBE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -150,18 +149,10 @@
 		15931D422CB1B6F600927DBE /* Banque Misr - iOS ExerciseTests */ = {
 			isa = PBXGroup;
 			children = (
-				15931D432CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift */,
+				15C45E242CB30C3D00043339 /* Tests */,
+				15C45E202CB304EB00043339 /* Moking */,
 			);
 			path = "Banque Misr - iOS ExerciseTests";
-			sourceTree = "<group>";
-		};
-		15931D4C2CB1B6F600927DBE /* Banque Misr - iOS ExerciseUITests */ = {
-			isa = PBXGroup;
-			children = (
-				15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */,
-				15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */,
-			);
-			path = "Banque Misr - iOS ExerciseUITests";
 			sourceTree = "<group>";
 		};
 		15ADD2BA2CB226C9000B57E5 /* Home */ = {
@@ -218,6 +209,7 @@
 		15ADD2F12CB2BB2C000B57E5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				15C45E1D2CB2FE6A00043339 /* UseCases */,
 				15ADD2F22CB2BB40000B57E5 /* Protocols */,
 				15ADD2FA2CB2BE39000B57E5 /* Services */,
 				15CA47612CB1D023001175A0 /* Model */,
@@ -333,6 +325,38 @@
 				15ADD3042CB2E914000B57E5 /* ImageLoader.swift */,
 			);
 			path = NetWork;
+			sourceTree = "<group>";
+		};
+		15C45E1D2CB2FE6A00043339 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				15C45E1E2CB2FE9400043339 /* FetchMoviesUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		15C45E202CB304EB00043339 /* Moking */ = {
+			isa = PBXGroup;
+			children = (
+				15C45E222CB305D000043339 /* MokingMovieFetching.swift */,
+			);
+			path = Moking;
+			sourceTree = "<group>";
+		};
+		15C45E242CB30C3D00043339 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				15C45E252CB30C4700043339 /* Testing ViewModel */,
+				15C45E262CB30D6000043339 /* TestingMoviesViewModel2.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		15C45E252CB30C4700043339 /* Testing ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Testing ViewModel";
 			sourceTree = "<group>";
 		};
 		15CA475D2CB1CFDC001175A0 /* DataSources */ = {
@@ -489,6 +513,7 @@
 				15C45E172CB2EB6E00043339 /* MovieEntityType.swift in Sources */,
 				151C2CE02CB1E34C00FDEB66 /* MovieDetailsViewController.swift in Sources */,
 				15ADD30A2CB2EA3A000B57E5 /* ImageLoadingProtocol.swift in Sources */,
+				15C45E1F2CB2FE9400043339 /* FetchMoviesUseCase.swift in Sources */,
 				15ADD3022CB2D588000B57E5 /* MoviesViewModel.swift in Sources */,
 				15931D2E2CB1B6F400927DBE /* MoviesViewController.swift in Sources */,
 				15ADD3052CB2E914000B57E5 /* ImageLoader.swift in Sources */,
@@ -512,7 +537,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15931D442CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift in Sources */,
+				15C45E272CB30D6000043339 /* TestingMoviesViewModel2.swift in Sources */,
+				15C45E232CB305D000043339 /* MokingMovieFetching.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,8 +546,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15931D4E2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift in Sources */,
-				15931D502CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

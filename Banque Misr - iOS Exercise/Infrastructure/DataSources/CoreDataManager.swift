@@ -20,8 +20,7 @@ class CoreDataManager :CoreDataManagerProtocol {
         
     }
     
-    
-    
+
     func saveMovies(movies: [Movie],movieEntitie : MovieEntityType) {
         guard let entity = NSEntityDescription.entity(forEntityName: movieEntitie.rawValue , in: context) else {return}
         

@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Banque Misr - iOS ExerciseTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>15931D252CB1B6F400927DBE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>15931D3E2CB1B6F600927DBE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>15931D482CB1B6F600927DBE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
