@@ -66,7 +66,6 @@
 		15ADD2D02CB2451D000B57E5 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		15ADD2DE2CB263A8000B57E5 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		15ADD2E82CB29652000B57E5 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
-		15ADD2EB2CB2AD40000B57E5 /* coredata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coredata.xcdatamodel; sourceTree = "<group>"; };
 		15ADD2EE2CB2B047000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Banque_Misr___iOS_Exercise.xcdatamodel"; sourceTree = "<group>"; };
 		15CA475F2CB1D003001175A0 /* NetwrokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrokManager.swift; sourceTree = "<group>"; };
 		15CA47622CB1D02E001175A0 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
@@ -122,15 +121,12 @@
 		15931D282CB1B6F400927DBE /* Banque Misr - iOS Exercise */ = {
 			isa = PBXGroup;
 			children = (
-				15ADD2ED2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld */,
-				15ADD2CD2CB24249000B57E5 /* App */,
-				15CA475D2CB1CFDC001175A0 /* Services */,
-				15CA47612CB1D023001175A0 /* Model */,
-				15ADD2B92CB226AC000B57E5 /* Modules */,
-				15ADD2C02CB22765000B57E5 /* View */,
-				15931D352CB1B6F600927DBE /* Assets.xcassets */,
-				15931D3A2CB1B6F600927DBE /* Info.plist */,
-				15ADD2EA2CB2AD40000B57E5 /* coredata.xcdatamodeld */,
+				15ADD2F72CB2BDC3000B57E5 /* Application */,
+				15ADD2F12CB2BB2C000B57E5 /* Domain */,
+				15ADD2F42CB2BB97000B57E5 /* Infrastructure */,
+				15ADD2F52CB2BC05000B57E5 /* Presentation */,
+				15ADD2FE2CB2BFE4000B57E5 /* Supporting Files */,
+				15ADD2FF2CB2BFFE000B57E5 /* Assets */,
 			);
 			path = "Banque Misr - iOS Exercise";
 			sourceTree = "<group>";
@@ -152,28 +148,9 @@
 			path = "Banque Misr - iOS ExerciseUITests";
 			sourceTree = "<group>";
 		};
-		15ADD2B72CB2264C000B57E5 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				15ADD2DE2CB263A8000B57E5 /* CoreDataManager.swift */,
-			);
-			path = Local;
-			sourceTree = "<group>";
-		};
-		15ADD2B82CB22684000B57E5 /* Movie */ = {
-			isa = PBXGroup;
-			children = (
-				15CA47622CB1D02E001175A0 /* MoviesModel.swift */,
-				15ADD2E82CB29652000B57E5 /* MovieDetailModel.swift */,
-			);
-			path = Movie;
-			sourceTree = "<group>";
-		};
 		15ADD2B92CB226AC000B57E5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				15ADD2BA2CB226C9000B57E5 /* Home */,
-				15ADD2BB2CB226D6000B57E5 /* MovieDetails */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -228,13 +205,13 @@
 			path = "View Model";
 			sourceTree = "<group>";
 		};
-		15ADD2C02CB22765000B57E5 /* View */ = {
+		15ADD2C02CB22765000B57E5 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				15931D2F2CB1B6F400927DBE /* Main.storyboard */,
 				15931D372CB1B6F600927DBE /* LaunchScreen.storyboard */,
 			);
-			path = View;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		15ADD2C12CB227FB000B57E5 /* Model */ = {
@@ -245,39 +222,132 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		15ADD2CD2CB24249000B57E5 /* App */ = {
+		15ADD2F12CB2BB2C000B57E5 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				15931D292CB1B6F400927DBE /* AppDelegate.swift */,
-				15931D2B2CB1B6F400927DBE /* SceneDelegate .swift */,
-				15ADD2CE2CB24267000B57E5 /* AppCoordinator.swift */,
-				15ADD2D02CB2451D000B57E5 /* MessageType.swift */,
+				15ADD2F22CB2BB40000B57E5 /* Protocols */,
+				15ADD2FA2CB2BE39000B57E5 /* Services */,
+				15CA47612CB1D023001175A0 /* Model */,
 			);
-			path = App;
+			path = Domain;
 			sourceTree = "<group>";
 		};
-		15CA475D2CB1CFDC001175A0 /* Services */ = {
+		15ADD2F22CB2BB40000B57E5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				15ADD2B72CB2264C000B57E5 /* Local */,
-				15CA475E2CB1CFE8001175A0 /* Remote */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		15ADD2F42CB2BB97000B57E5 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2FB2CB2BEA9000B57E5 /* Persistence */,
+				15CA475D2CB1CFDC001175A0 /* DataSources */,
+			);
+			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		15ADD2F52CB2BC05000B57E5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2FC2CB2BED5000B57E5 /* ViewControllers */,
+				15ADD2FD2CB2BF5A000B57E5 /* Enums */,
+				15ADD2B92CB226AC000B57E5 /* Modules */,
+				15ADD2C02CB22765000B57E5 /* Storyboards */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		15ADD2F72CB2BDC3000B57E5 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				15931D2B2CB1B6F400927DBE /* SceneDelegate .swift */,
+				15931D292CB1B6F400927DBE /* AppDelegate.swift */,
+				15ADD2F82CB2BDED000B57E5 /* ViewModels */,
+				15ADD2F92CB2BE02000B57E5 /* Coordinators */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		15ADD2F82CB2BDED000B57E5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		15ADD2F92CB2BE02000B57E5 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2CE2CB24267000B57E5 /* AppCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		15ADD2FA2CB2BE39000B57E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2C82CB22D38000B57E5 /* Connectivty.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		15CA475E2CB1CFE8001175A0 /* Remote */ = {
+		15ADD2FB2CB2BEA9000B57E5 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				15CA475F2CB1D003001175A0 /* NetwrokManager.swift */,
-				15ADD2C82CB22D38000B57E5 /* Connectivty.swift */,
+				15ADD2ED2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld */,
 			);
-			path = Remote;
+			name = Persistence;
+			sourceTree = "<group>";
+		};
+		15ADD2FC2CB2BED5000B57E5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2BA2CB226C9000B57E5 /* Home */,
+				15ADD2BB2CB226D6000B57E5 /* MovieDetails */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		15ADD2FD2CB2BF5A000B57E5 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2D02CB2451D000B57E5 /* MessageType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		15ADD2FE2CB2BFE4000B57E5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15931D3A2CB1B6F600927DBE /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15ADD2FF2CB2BFFE000B57E5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				15931D352CB1B6F600927DBE /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		15CA475D2CB1CFDC001175A0 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				15ADD2DE2CB263A8000B57E5 /* CoreDataManager.swift */,
+				15CA475F2CB1D003001175A0 /* NetwrokManager.swift */,
+			);
+			path = DataSources;
 			sourceTree = "<group>";
 		};
 		15CA47612CB1D023001175A0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				15ADD2B82CB22684000B57E5 /* Movie */,
+				15ADD2E82CB29652000B57E5 /* MovieDetailModel.swift */,
+				15CA47622CB1D02E001175A0 /* MoviesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -769,17 +839,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		15ADD2EA2CB2AD40000B57E5 /* coredata.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				15ADD2EB2CB2AD40000B57E5 /* coredata.xcdatamodel */,
-			);
-			currentVersion = 15ADD2EB2CB2AD40000B57E5 /* coredata.xcdatamodel */;
-			name = coredata.xcdatamodeld;
-			path = "/Users/ahmedelgndy/Documents/Banque-Misr-iOS-Exercise-/Banque Misr - iOS Exercise/coredata.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		15ADD2ED2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
