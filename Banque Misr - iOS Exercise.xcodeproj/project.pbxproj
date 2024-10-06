@@ -17,13 +17,14 @@
 		15931D442CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D432CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseTests.swift */; };
 		15931D4E2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */; };
 		15931D502CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */; };
-		15ADD2C42CB2288F000B57E5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2C32CB2288F000B57E5 /* CoreDataManager.swift */; };
 		15ADD2C92CB22D38000B57E5 /* Connectivty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2C82CB22D38000B57E5 /* Connectivty.swift */; };
-		15ADD2CC2CB22F05000B57E5 /* BankMasrCorData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2CA2CB22F05000B57E5 /* BankMasrCorData.xcdatamodeld */; };
 		15ADD2CF2CB24267000B57E5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2CE2CB24267000B57E5 /* AppCoordinator.swift */; };
 		15ADD2D12CB2451D000B57E5 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2D02CB2451D000B57E5 /* MessageType.swift */; };
+		15ADD2DF2CB263A8000B57E5 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2DE2CB263A8000B57E5 /* CoreDataManager.swift */; };
+		15ADD2E92CB29652000B57E5 /* MovieDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2E82CB29652000B57E5 /* MovieDetailModel.swift */; };
+		15ADD2EF2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15ADD2ED2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld */; };
 		15CA47602CB1D003001175A0 /* NetwrokManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA475F2CB1D003001175A0 /* NetwrokManager.swift */; };
-		15CA47632CB1D02E001175A0 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47622CB1D02E001175A0 /* Movie.swift */; };
+		15CA47632CB1D02E001175A0 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47622CB1D02E001175A0 /* MoviesModel.swift */; };
 		15CA47652CB1D050001175A0 /* MovieCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CA47642CB1D050001175A0 /* MovieCategory.swift */; };
 		15CC51772CB1BDA000A41E72 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -60,13 +61,15 @@
 		15931D492CB1B6F600927DBE /* Banque Misr - iOS ExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Banque Misr - iOS ExerciseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15931D4D2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseUITests.swift"; sourceTree = "<group>"; };
 		15931D4F2CB1B6F600927DBE /* Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Banque_Misr___iOS_ExerciseUITestsLaunchTests.swift"; sourceTree = "<group>"; };
-		15ADD2C32CB2288F000B57E5 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		15ADD2C82CB22D38000B57E5 /* Connectivty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivty.swift; sourceTree = "<group>"; };
-		15ADD2CB2CB22F05000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Banque_Misr___iOS_Exercise.xcdatamodel"; sourceTree = "<group>"; };
 		15ADD2CE2CB24267000B57E5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		15ADD2D02CB2451D000B57E5 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		15ADD2DE2CB263A8000B57E5 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		15ADD2E82CB29652000B57E5 /* MovieDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailModel.swift; sourceTree = "<group>"; };
+		15ADD2EB2CB2AD40000B57E5 /* coredata.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coredata.xcdatamodel; sourceTree = "<group>"; };
+		15ADD2EE2CB2B047000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Banque_Misr___iOS_Exercise.xcdatamodel"; sourceTree = "<group>"; };
 		15CA475F2CB1D003001175A0 /* NetwrokManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetwrokManager.swift; sourceTree = "<group>"; };
-		15CA47622CB1D02E001175A0 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		15CA47622CB1D02E001175A0 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
 		15CA47642CB1D050001175A0 /* MovieCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCategory.swift; sourceTree = "<group>"; };
 		15CC51762CB1BDA000A41E72 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +122,7 @@
 		15931D282CB1B6F400927DBE /* Banque Misr - iOS Exercise */ = {
 			isa = PBXGroup;
 			children = (
+				15ADD2ED2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld */,
 				15ADD2CD2CB24249000B57E5 /* App */,
 				15CA475D2CB1CFDC001175A0 /* Services */,
 				15CA47612CB1D023001175A0 /* Model */,
@@ -126,6 +130,7 @@
 				15ADD2C02CB22765000B57E5 /* View */,
 				15931D352CB1B6F600927DBE /* Assets.xcassets */,
 				15931D3A2CB1B6F600927DBE /* Info.plist */,
+				15ADD2EA2CB2AD40000B57E5 /* coredata.xcdatamodeld */,
 			);
 			path = "Banque Misr - iOS Exercise";
 			sourceTree = "<group>";
@@ -150,8 +155,7 @@
 		15ADD2B72CB2264C000B57E5 /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				15ADD2C32CB2288F000B57E5 /* CoreDataManager.swift */,
-				15ADD2CA2CB22F05000B57E5 /* BankMasrCorData.xcdatamodeld */,
+				15ADD2DE2CB263A8000B57E5 /* CoreDataManager.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -159,7 +163,8 @@
 		15ADD2B82CB22684000B57E5 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
-				15CA47622CB1D02E001175A0 /* Movie.swift */,
+				15CA47622CB1D02E001175A0 /* MoviesModel.swift */,
+				15ADD2E82CB29652000B57E5 /* MovieDetailModel.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -410,17 +415,18 @@
 			files = (
 				15ADD2CF2CB24267000B57E5 /* AppCoordinator.swift in Sources */,
 				15ADD2C92CB22D38000B57E5 /* Connectivty.swift in Sources */,
-				15CA47632CB1D02E001175A0 /* Movie.swift in Sources */,
+				15CA47632CB1D02E001175A0 /* MoviesModel.swift in Sources */,
 				151C2CE02CB1E34C00FDEB66 /* MovieDetailsViewController.swift in Sources */,
 				15931D2E2CB1B6F400927DBE /* MoviesViewController.swift in Sources */,
 				15CC51772CB1BDA000A41E72 /* MovieCollectionViewCell.swift in Sources */,
-				15ADD2CC2CB22F05000B57E5 /* BankMasrCorData.xcdatamodeld in Sources */,
+				15ADD2DF2CB263A8000B57E5 /* CoreDataManager.swift in Sources */,
 				15ADD2D12CB2451D000B57E5 /* MessageType.swift in Sources */,
 				15CA47652CB1D050001175A0 /* MovieCategory.swift in Sources */,
 				15931D2A2CB1B6F400927DBE /* AppDelegate.swift in Sources */,
 				15CA47602CB1D003001175A0 /* NetwrokManager.swift in Sources */,
-				15ADD2C42CB2288F000B57E5 /* CoreDataManager.swift in Sources */,
 				15931D2C2CB1B6F400927DBE /* SceneDelegate .swift in Sources */,
+				15ADD2E92CB29652000B57E5 /* MovieDetailModel.swift in Sources */,
+				15ADD2EF2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,13 +769,24 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		15ADD2CA2CB22F05000B57E5 /* BankMasrCorData.xcdatamodeld */ = {
+		15ADD2EA2CB2AD40000B57E5 /* coredata.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				15ADD2CB2CB22F05000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */,
+				15ADD2EB2CB2AD40000B57E5 /* coredata.xcdatamodel */,
 			);
-			currentVersion = 15ADD2CB2CB22F05000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */;
-			path = BankMasrCorData.xcdatamodeld;
+			currentVersion = 15ADD2EB2CB2AD40000B57E5 /* coredata.xcdatamodel */;
+			name = coredata.xcdatamodeld;
+			path = "/Users/ahmedelgndy/Documents/Banque-Misr-iOS-Exercise-/Banque Misr - iOS Exercise/coredata.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		15ADD2ED2CB2B047000B57E5 /* BanqueMisriOSExercise.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				15ADD2EE2CB2B047000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */,
+			);
+			currentVersion = 15ADD2EE2CB2B047000B57E5 /* Banque_Misr___iOS_Exercise.xcdatamodel */;
+			path = BanqueMisriOSExercise.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

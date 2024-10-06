@@ -10,90 +10,83 @@ import CoreData
 import UIKit
 
 protocol CoreDataManagerProtocol {
-    func saveMovies(movies: [Movie])
+    func saveMovies(movies: [Movie], movieEntity: String)
     func fetchFavoriteMovies() -> [Movie]
 }
 
 class CoreDataManager {
-    static let shared = CoreDataManager() // Singleton instance
-    private let context: NSManagedObjectContext
+    static let shared = CoreDataManager() // singleton
+    private var context: NSManagedObjectContext
     
     private init() {
-           if Thread.isMainThread {
-               let appDelegate = UIApplication.shared.delegate as! AppDelegate
-               context = appDelegate.persistentContainer.viewContext
-           } else {
-               context = DispatchQueue.main.sync {
-                   let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                   return appDelegate.persistentContainer.viewContext
-               }
-           }
-       }
-    
-    func saveMovies(movies: [Movie]) {
-        guard let entity = NSEntityDescription.entity(forEntityName: "NowPlay", in: context) else {
-            print("No NowPlay entity found")
-            return
-        }
-        
-        for movie in movies {
-            let nowPlayingMovie = NSManagedObject(entity: entity, insertInto: context)
-            nowPlayingMovie.setValue(movie.title, forKey: "title")
-            nowPlayingMovie.setValue(movie.id, forKey: "id")
-            nowPlayingMovie.setValue(movie.posterPath, forKey: "poster")
-        }
-        
-        do {
-            try context.save()
-            print("Movies saved successfully")
-        } catch {
-            print("Failed to save movies: \(error.localizedDescription)")
-        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        context = appDelegate.persistentContainer.viewContext
+  
     }
     
-    func fetchFavoriteMovies() -> [Movie] {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NowPlay") 
+    func saveMovies(movies: [Movie] ) {
+        print(movies)
+        //guard let entity = NSEntityDescription.entity(forEntityName: "MovieEntity" , in: context) else {return}
+
         
+        //let existingMovieIDs = Set(fetchMovieIDs(for: "MovieEntity"))
+        let existingMovieIDs = Set<Int>()
+        
+        for movie in movies {
+            if !existingMovieIDs.contains(movie.id) {
+                //let movieObject = NSManagedObject(entity: entity, insertInto: context)
+                let movieObject = MovieEntity(context: context)
+                movieObject.id = Int64(movie.id)
+                movieObject.title = movie.title
+                movieObject.posterPath = movie.posterPath
+              //  movieObject.setValue(movie.title, forKey: "title")
+              //  movieObject.setValue(movie.id, forKey: "id")
+              //  movieObject.setValue(movie.posterPath, forKey: "posterPath")
+            }
+        }
+        saveContext()
+    }
+    func fetcheMovies(entit : String) -> [Movie] {
+          print(entit)
+          let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: entit)
+          
+          do {
+              let results = try context.fetch(fetchRequest)
+              return results.compactMap { result in
+                  if let title = result.value(forKey: "title") as? String,
+                     let id = result.value(forKey: "id") as? Int,
+                     let poster = result.value(forKey: "poster") as? String {
+                      return Movie(id: id, title: title, posterPath: poster)
+                  } else {
+                      return nil
+                  }
+              }
+          } catch {
+              print("Failed to fetch favorite movies: \(error.localizedDescription)")
+              return []
+          }
+      }
+      
+    private func fetchMovieIDs(for entity: String) -> [Int] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "MovieEntity")
         do {
             let results = try context.fetch(fetchRequest)
-            // Convert to [Movie]
-            return results.compactMap { result in
-                if let title = result.value(forKey: "title") as? String,
-                   let id = result.value(forKey: "id") as? Int,
-                   let poster = result.value(forKey: "poster") as? String {
-                    return Movie(id: id, title: title, posterPath: poster)
-                } else {
-                    return nil
-                }
-            }
+            return results.compactMap { $0.value(forKey: "id") as? Int }
         } catch {
-            print("Failed to fetch favorite movies: \(error.localizedDescription)")
+            print("Failed to fetch movie IDs: \(error.localizedDescription)")
             return []
         }
     }
     
+    private func saveContext() {
+        if context.hasChanges {
+            do {
+                try context.save()
+                print("Movies saved successfully")
+            } catch {
+                print("Failed to save movies: \(error.localizedDescription)")
+            }
+        }
+    }
 }
-    /*func removeFavouriteLeague(leagueKey: Int) {
-        guard let index = fetchFavouriteLeagues().firstIndex(where: { $0.leagueKey == leagueKey }) else { return }
-        
-        context.delete(fetchFavouriteLeagues()[index])
-        
-        do {
-            try context.save()
-        } catch {
-            print("Failed to remove favorite league: \(error.localizedDescription)")
-        }
-    }
-    
-    func isFav(leagueKey: Int?) -> Bool {
-        guard let leagueKey = leagueKey else { return false }
-        
-        return fetchFavouriteLeagues().map({ Int($0.leagueKey) }).contains(leagueKey)
-    }
-    
-    func favToggle(league: Leagues) {
-        if let leagueKey = league.leagueKey {
-            isFav(leagueKey: leagueKey) ? removeFavouriteLeague(leagueKey: leagueKey) : saveFavouriteLeague(league: league)
-        }
-    }*/
 

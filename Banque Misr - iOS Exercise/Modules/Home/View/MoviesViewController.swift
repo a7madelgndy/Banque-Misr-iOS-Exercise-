@@ -13,10 +13,12 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
     @IBOutlet var tabBar: UITabBar!
     @IBOutlet var moviesCollectionView: UICollectionView!
     
-    var nowPlaying:[Movie]?
-    var poupularMovies:[Movie]?
-    var upcomingMovies:[Movie]?
-    var movies :[Movie]? {
+    var nowPlaying: [Movie]?
+    var popularMovies: [Movie]?
+    var upcomingMovies: [Movie]?
+    var isThereInternetConnection : Bool?
+    
+    var movies: [Movie]? {
         didSet {
             DispatchQueue.main.async {
                 self.moviesCollectionView.reloadData()
@@ -24,10 +26,11 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
         }
     }
     
-    var networkManger: NetworkManager?
+    var networkManager: NetworkManager?
     var loadingIndicator: UIActivityIndicatorView?
     let networkMonitor = NetworkMonitor.shared
-    var appCoordinator:AppCoordinator? = nil
+    var appCoordinator: AppCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.isUserInteractionEnabled = false
@@ -35,56 +38,20 @@ class MoviesViewController: UIViewController,UITabBarControllerDelegate {
         setUpTabBar()
         setUpCollectionView()
         appCoordinator = AppCoordinator()
-        networkMonitor.checkConnection { isConnected in
-            if isConnected {
-                self.networkManger = NetworkManager()
-                let group = DispatchGroup()
-                group.enter()
-                self.setUpConnectionToApi(category: .nowPlaying, completion: { movies in
-                    self.nowPlaying = movies
-                    CoreDataManager.shared.saveMovies(movies: movies!)
-                    group.leave()
-                })
-                
-                group.enter()
-                self.setUpConnectionToApi(category: .upcoming, completion: { movies in
-                    self.upcomingMovies = movies
-                    group.leave()
-                })
-                group.enter()
-                self.setUpConnectionToApi(category: .popular, completion: { movies in
-                    self.poupularMovies = movies
-                    group.leave()
-                })
-                group.notify(queue: .main) {
-                    self.hideLoadingIndicator()
-                    self.view.isUserInteractionEnabled = true
-                    self.handleTabSelection(index: 0)
-                }
-            } else {
-                self.appCoordinator?.showAlert(from: self, message: .warning("there is No intere net you are in the Local Storage"))
-                self.hideLoadingIndicator()
-                self.view.isUserInteractionEnabled = true
-                self.movies = CoreDataManager.shared.fetchFavoriteMovies()
-                
-                print(self.movies)
-            }
-        }
-
-
+        checkForConnection()
     }
-    
+ 
 }
-//MARK: TabBar
-extension MoviesViewController:UITabBarDelegate {
+
+extension MoviesViewController: UITabBarDelegate {
     func setUpTabBar() {
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items?.first
         handleTabSelection(index: 0)
     }
+    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         if let index = tabBar.items?.firstIndex(of: item) {
-            print("Selected tab index: \(index)")
             handleTabSelection(index: index)
         }
     }
@@ -92,12 +59,12 @@ extension MoviesViewController:UITabBarDelegate {
     func handleTabSelection(index: Int) {
         switch index {
         case 0:
-            headerTitle.text = "Now playing Movies"
+            headerTitle.text = "Now Playing Movies"
             movies = nowPlaying
+        
         case 1:
             headerTitle.text = "Popular Movies"
-            movies = poupularMovies
-            
+            movies = popularMovies
         case 2:
             headerTitle.text = "Upcoming Movies"
             movies = upcomingMovies
@@ -107,19 +74,21 @@ extension MoviesViewController:UITabBarDelegate {
     }
 }
 
-//MARK: Movies collection View
-extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func setUpCollectionView() {
         moviesCollectionView.delegate = self
         moviesCollectionView.dataSource = self
         moviesCollectionView.collectionViewLayout = UICollectionViewFlowLayout()
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies?.count ?? 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = moviesCollectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
         if let movie = movies?[indexPath.row] {
@@ -127,44 +96,109 @@ extension MoviesViewController:UICollectionViewDelegate ,UICollectionViewDataSou
         }
         return cell
     }
-    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+   
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        view.isUserInteractionEnabled = false
+        showLoadingIndicator()
+        guard let selectedMovie = movies?[indexPath.row].id else { return }
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as! MovieDetailsViewController
+        
+        networkManager?.fetchMovieDetails(for: selectedMovie
+                                          , completion: { result in
+            switch result {
+                
+            case .success(let movie ):
+                print("joi")
+                print(type(of: movie))
+                print("ddf")
+                DispatchQueue.main.async {
+                    self.view.isUserInteractionEnabled = true
+                    self.hideLoadingIndicator()
+                    detailVC.movieDatiles = movie
+                    self.present(detailVC, animated: true)
+                }
+               
+            case .failure(let eror):
+                print(eror)
+            }
+            
+        })
         
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else {
-              return
-          }
-        guard let selectedImage = cell.movieImage.image else { return }
-        let vc = storyboard?.instantiateViewController(withIdentifier: "showDetailSegue") as? MovieDetailsViewController
-        guard let vc = vc else {return }
-        vc.movieDatiles = movies?[indexPath.row]
-        vc.imageView = selectedImage
-        self.present(vc, animated: true)
-    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailSegue",
            let destinationVC = segue.destination as? MovieDetailsViewController,
            let indexPath = sender as? IndexPath {
             destinationVC.movieDatiles = movies?[indexPath.row]
         }
-    }
- 
-    //number of  items in the row
+    */
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 10 //padding
-        let itemsPerRow: CGFloat = 3// number of items
-        let totalPadding = padding * (itemsPerRow + 1) // padding between items and edges
+        let padding: CGFloat = 10
+        let itemsPerRow: CGFloat = 3
+        let totalPadding = padding * (itemsPerRow + 1)
         let availableWidth = collectionView.frame.width - totalPadding
         let itemWidth = availableWidth / itemsPerRow
-        return CGSize(width: itemWidth, height: itemWidth)
+        return CGSize(width: itemWidth, height: 200)
     }
 }
 
-//MARK: netwroking
 extension MoviesViewController {
-    func setUpConnectionToApi(category: MovieCategory ,completion: @escaping ([Movie]?) -> Void){
-        networkManger?.fetchMovies(category: category,completion: { result in
+    func checkForConnection() {
+        networkMonitor.checkConnection { [weak self] isConnected in
+            guard let self = self else { return }
+            if isConnected {
+                isThereInternetConnection = true
+                self.networkManager = NetworkManager()
+                self.fetchMoviesData()
+            } else {
+                isThereInternetConnection = false
+                self.appCoordinator?.showAlert(from: self, message: .warning("There is no internet; you are using local storage."))
+                self.hideLoadingIndicator()
+                self.view.isUserInteractionEnabled = true
+                //self.nowPlaying = CoreDataManager.shared.fetcheMovies(entit: "NowPlaying")
+              //  self.upcomingMovies = CoreDataManager.shared.fetcheMovies(entit: "Upcoming")
+               // self.popularMovies =  CoreDataManager.shared.fetcheMovies(entit: "Popular")
+                
+            }
+        }
+    }
+    
+    func fetchMoviesData() {
+        let group = DispatchGroup()
+        group.enter()
+        self.setUpConnectionToApi(category: .nowPlaying) { movies in
+            self.nowPlaying = movies
+          DispatchQueue.main.async {
+                CoreDataManager.shared.saveMovies(movies: movies ?? [] )
+          }
+            group.leave()
+        }
+        
+        group.enter()
+        self.setUpConnectionToApi(category: .upcoming) { movies in
+            self.upcomingMovies = movies
+           //CoreDataManager.shared.saveMovies(movies: movies ?? [], movieEntity: "Upcoming")
+            group.leave()
+        }
+        
+        group.enter()
+        self.setUpConnectionToApi(category: .popular) { movies in
+            self.popularMovies = movies
+           // CoreDataManager.shared.saveMovies(movies: movies ?? [], movieEntity: "Popular")
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.hideLoadingIndicator()
+            self.view.isUserInteractionEnabled = true
+            self.handleTabSelection(index: 0)
+        }
+    }
+    
+    func setUpConnectionToApi(category: MovieCategory, completion: @escaping ([Movie]?) -> Void) {
+        networkManager?.fetchMovies(category: category) { result in
             switch result {
             case .success(let movies):
                 completion(movies)
@@ -172,11 +206,10 @@ extension MoviesViewController {
                 completion(nil)
                 print("Error fetching movies: \(error.localizedDescription)")
             }
-        })
+        }
     }
 }
 
-//Mark: Indector
 extension MoviesViewController {
     func showLoadingIndicator() {
         loadingIndicator = UIActivityIndicatorView(style: .large)
@@ -184,6 +217,7 @@ extension MoviesViewController {
         loadingIndicator?.startAnimating()
         self.view.addSubview(loadingIndicator!)
     }
+    
     func hideLoadingIndicator() {
         DispatchQueue.main.async { [weak self] in
             self?.loadingIndicator?.stopAnimating()
@@ -192,21 +226,3 @@ extension MoviesViewController {
     }
 }
 
-//Mark REfressindecto
-extension MoviesViewController {
-   
-
-     
-     func fetchData() {
-         showLoadingIndicator()
-         
-         // Simulating a network call
-         DispatchQueue.global().async {
-             // Simulate network delay
-             sleep(2)
-             
-             // Once done, hide the loading indicator
-             self.hideLoadingIndicator()
-         }
-     }
-}
