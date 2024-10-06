@@ -24,7 +24,7 @@ class MovieDetailsViewModel {
         }
 
         networkingManager.fetchImage(with: movieDetail) { image in
-            completion(UIImage(named: "1"))
+            completion(image)
         }
     }
 }
