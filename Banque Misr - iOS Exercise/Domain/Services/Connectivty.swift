@@ -9,7 +9,7 @@ import Network
 import Foundation
 
 
-class NetworkMonitor {
+class NetworkMonitor:NetworkMonitorProtocol {
     
     static let shared = NetworkMonitor()
     private let monitor = NWPathMonitor()
@@ -21,7 +21,7 @@ class NetworkMonitor {
         startMonitoring() 
     }
     
-    private func startMonitoring() {
+    internal func startMonitoring() {
         monitor.start(queue: queue)
         monitor.pathUpdateHandler = { [weak self] path in
             self?.isConnected = path.status == .satisfied
