@@ -7,7 +7,6 @@
 
 import Foundation
 @testable import Banque_Misr___iOS_Exercise
-import Foundation
 import UIKit
 
 class MockNetworkManager: NetworkManager {
